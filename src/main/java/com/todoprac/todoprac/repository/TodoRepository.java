@@ -11,9 +11,9 @@ public interface TodoRepository extends JpaRepository<Todo, Long> { //This repo 
     
     List<Todo> findByUser(User user);
     List<Todo> findByUserAndCompleted(User user, Boolean completed);
-    Todo findById(Long id);
-    void save(Todo todo);
-    void deleteById(Long id);
-    
+    // Todo findById(Long id);
+    // void save(Todo todo);
+    // void deleteById(Long id);
+    //these methods that were commented out already exist in JPA!
 
 }
