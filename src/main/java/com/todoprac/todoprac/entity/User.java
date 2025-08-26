@@ -39,7 +39,7 @@ public class User {
         this.password = password;
     }
 
-    public Long getid(){
+    public Long getId(){
         return id;
     }
     public void setId(Long id){
