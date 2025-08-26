@@ -28,7 +28,7 @@ public class TodoService {
         return todoRepository.save(todo);
     }
     //2. Get todos by user:
-    public List<Todo> getTodoByUser(User user){
+    public List<Todo> getTodosByUser(User user){
         return todoRepository.findByUser(user);
     }
 
@@ -60,9 +60,9 @@ public class TodoService {
             }
             if (title != null) todo.setTitle(title);
             if (notes != null) todo.setNotes(notes);
-            if (completed != null) todo.setNotes(notes);
-            if (important != null) todo.setNotes(notes);
-            if (due_by != null) todo.setNotes(notes);
+            if (completed != null) todo.setCompleted(completed);
+            if (important != null) todo.setImportant(important);
+            if (due_by != null) todo.setDue_by(due_by);
             return Optional.of(todoRepository.save(todo));
         }
         return Optional.empty();
@@ -78,6 +78,14 @@ public class TodoService {
             }
         }
         return false;
+    }
+
+    public Optional<Todo> getTodoById(Long id){
+        Optional<Todo> todo = todoRepository.findById(id);
+        if(todo.isPresent()){
+            return todo;
+        }
+        return  Optional.empty();
     }
 
     //7. Todo exists?
