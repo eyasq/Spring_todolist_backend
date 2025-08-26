@@ -24,7 +24,7 @@ public class User {
     @NotBlank(message="Email is a required field")
     @Email(message="Please input a valid email")
     @Size(max = 100, message = "Email must be less than 100 characters")
-    @Column(nullable = false, length = 100)
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
     @NotBlank(message = "Password is a required field")
