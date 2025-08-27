@@ -1,11 +1,11 @@
 package com.todos.todo.services;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.todos.todo.dtos.CreateTodoEditRequest;
 import com.todos.todo.dtos.CreateTodoRequest;
 import com.todos.todo.entities.TodoEntity;
 import com.todos.todo.repositories.TodoRepository;
@@ -48,15 +48,15 @@ public class TodoService {
     }
 
     //4,5. Edit todo
-    public Optional<TodoEntity> editTodo(long id, String title, String notes, Boolean important, Boolean completed, LocalDate dueBy){
+    public Optional<TodoEntity> editTodo(CreateTodoEditRequest request, Long id){
         Optional<TodoEntity> todoToEditOp = todoRepository.findById(id);
         if (todoToEditOp.isPresent()){
             TodoEntity todoToEdit = todoToEditOp.get();
-        if (title!= null) todoToEdit.setTitle(title);
-        if(notes !=null) todoToEdit.setNotes(notes);
-        if (important != null) todoToEdit.setImportant(important);
-        if (completed!=null) todoToEdit.setCompleted(completed);
-        if (dueBy!=null) todoToEdit.setDueBy(dueBy);
+        if (request.getTitle()!= null) todoToEdit.setTitle(request.getTitle());
+        if(request.getNotes() !=null) todoToEdit.setNotes(request.getNotes());
+        if (request.getImportant() != null) todoToEdit.setImportant(request.getImportant());
+        if (request.getCompleted()!=null) todoToEdit.setCompleted(request.getCompleted());
+        if (request.getDueBy()!=null) todoToEdit.setDueBy(request.getDueBy());
         return Optional.of(todoRepository.save(todoToEdit));
         }
         return Optional.empty();
