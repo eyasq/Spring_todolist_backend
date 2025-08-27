@@ -13,7 +13,6 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +62,7 @@ public class TodoController {
         if(todoOpt.isPresent()){
             return ResponseEntity.status(HttpStatus.CREATED).body(GetTodosResponse.fromEntity(todoOpt.get()));
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(GetTodosResponse.fromEntity(todoOpt.get()));
 
 
     }
